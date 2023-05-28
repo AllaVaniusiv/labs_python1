@@ -19,6 +19,7 @@ class Printer(ABC):
             is_duplex (bool): True if the printer supports duplex printing, False otherwise.
             paper_tray_capacity (int): The capacity of the paper tray.
             paper_count (int): The current count of paper in the tray.
+            paper_sizes_supported (set): The set of paper sizes supported by the printer.
         """
         self.model = model
         self.pr_type = pr_type
@@ -26,6 +27,10 @@ class Printer(ABC):
         self.is_duplex = is_duplex
         self.paper_tray_capacity = paper_tray_capacity
         self.paper_count = paper_count
+        self.paper_sizes_supported = set()
+    def __iter__(self):
+        return iter(self.paper_sizes_supported)
+
     def __str__(self):
         """Returns a string that represents the object in a readable format."""
         return f"""Model: {self.model}, Pr Type: {self.pr_type}, Color: {self.is_color},
@@ -72,3 +77,15 @@ class Printer(ABC):
         Returns:
         int: The remaining number of pages.
         """
+
+    def get_attributes_by_value_pr_type(self, value_pr_type):
+        """
+        Return a dictionary of attributes and their values that match the specified value type.
+
+        Args:
+        value_pr_type (type): The type of value to match.
+
+        Returns:
+        dict: A dictionary of attributes and their values that have the specified value type.
+        """
+        return {attr: value for attr, value in self.__dict__.items() if isinstance(value, value_pr_type)}

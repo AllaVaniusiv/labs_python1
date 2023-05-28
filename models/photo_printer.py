@@ -3,14 +3,17 @@
 A class inheriting from the Printer class.
 """
 from models.printer import Printer
+
+
 class PhotoPrinter(Printer):
     """
-    A class representing photoprinter
+    A class representing a photoprinter.
     """
+
     def __init__(self, model, pr_type, is_color, is_duplex, paper_tray_capacity, # pylint: disable=too-many-arguments
                  paper_count, print_quality, ink_level):
         """
-        Initialize a PhotoPrinter object.
+        Initializes a PhotoPrinter object.
 
         Args:
         model (str): The model of the printer.
@@ -24,20 +27,19 @@ class PhotoPrinter(Printer):
         """
         super().__init__(model, pr_type, is_color, is_duplex, paper_tray_capacity, paper_count)
         self.print_quality = print_quality
-        self.ink_level = ink_level   
+        self.ink_level = ink_level
 
     def __str__(self):
         """Returns a string that represents the object in a readable format."""
-        return f"PhotoPrinter: model={self.model}, pr type={self.pr_type},\
-        color={self.is_color}, duplex={self.is_duplex}, paper tray capacity={self.paper_tray_capacity},\
-        paper count={self.paper_count}, print quality={self.print_quality}, inkLevel={self.ink_level}"
+        return f"PhotoPrinter: model={self.model}, pr type={self.pr_type}, color={self.is_color}, " \
+               f"duplex={self.is_duplex}, paper tray capacity={self.paper_tray_capacity}, " \
+               f"paper count={self.paper_count}, print quality={self.print_quality}, inkLevel={self.ink_level}"
 
     def __repr__(self):
         """Returns a string that is a valid Python expression for reproducing the object."""
-        return f"PhotoPrinter(model={self.model}, pr type={self.pr_type}, color={self.is_color},\
-        duplex={self.is_duplex}, paper tray capacity={self.paper_tray_capacity},\
-        paper count={self.paper_count}, print quality={self.print_quality}, inkLevel={self.ink_level})"
-
+        return f"PhotoPrinter(model={self.model}, pr type={self.pr_type}, color={self.is_color}, " \
+               f"duplex={self.is_duplex}, paper tray capacity={self.paper_tray_capacity}, " \
+               f"paper count={self.paper_count}, print quality={self.print_quality}, inkLevel={self.ink_level})"
 
     def get_remaining_pages_count(self):
         """
@@ -45,7 +47,6 @@ class PhotoPrinter(Printer):
 
         Returns:
         int: The remaining number of pages that can be printed.
-
         """
         remaining_pages = self.paper_tray_capacity - self.paper_count
         return remaining_pages

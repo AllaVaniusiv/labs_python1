@@ -3,6 +3,9 @@
 A class inheriting from the Printer class.
 """
 from models.printer import Printer
+from decorator import logged
+from exception import OutOfPaperException
+
 class ThreeDPrinter(Printer):
     """
     A class representing treeedprinter
@@ -35,6 +38,7 @@ class ThreeDPrinter(Printer):
         duplex={self.is_duplex}, paper tray capacity={self.paper_tray_capacity},\
         paper count={self.paper_count}, printing_speed={self.printing_speed})"
 
+    @logged(OutOfPaperException, mode="file")
     def get_remaining_pages_count(self):
         """
         Calculate and return the remaining number of pages that can be printed.
@@ -42,5 +46,8 @@ class ThreeDPrinter(Printer):
         Returns:
              int: The remaining number of pages that can be printed.
         """
+
         remaining_pages = self.paper_count
+        if remaining_pages <= 10:  
+            raise OutOfPaperException("Low paper count!")
         return remaining_pages

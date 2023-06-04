@@ -3,6 +3,9 @@
 A class inheriting from the Printer class.
 """
 from models.printer import  Printer
+from decorator import logged
+from exception import OutOfPaperException
+
 class InkjetPrinter(Printer):
     """
     A class representing inkjetprinter
@@ -58,6 +61,8 @@ class InkjetPrinter(Printer):
         magenta_ink_level={self.magenta_ink_level}, yellow_ink_type={self.yellow_ink_type},\
         yellow_ink_level={self.yellow_ink_level}, black_ink_type={self.black_ink_type},\
         black_ink_level={self.black_ink_level})"
+
+    @logged(OutOfPaperException, mode="file")
     def get_remaining_pages_count(self):
         """
         Calculate and return the maximum number of pages that can be printed based on the remaining ink levels.
@@ -69,4 +74,8 @@ class InkjetPrinter(Printer):
         remaining_magenta_pages = int(self.magenta_ink_level / self.required_colour_per_page)
         remaining_yellow_pages = int(self.yellow_ink_level / self.required_colour_per_page)
         remaining_black_pages = int(self.black_ink_level / self.required_colour_per_page)
+
+        if remaining_black_pages <= 0:
+            raise OutOfPaperException ("!!!")
+
         return min(remaining_cyan_pages, remaining_magenta_pages, remaining_yellow_pages, remaining_black_pages)

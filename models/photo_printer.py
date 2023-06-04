@@ -4,7 +4,6 @@ A class inheriting from the Printer class.
 """
 from models.printer import Printer
 
-
 class PhotoPrinter(Printer):
     """
     A class representing a photoprinter.
@@ -46,7 +45,7 @@ class PhotoPrinter(Printer):
         Calculate the remaining number of pages that can be printed.
 
         Returns:
-               int: The remaining number of pages that can be printed.
+        int: The remaining number of pages that can be printed.
         """
         remaining_pages = self.paper_tray_capacity - self.paper_count
         return remaining_pages

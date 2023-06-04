@@ -1,5 +1,5 @@
 """
-This is Set Manager class
+This is SetManager class
 """
 class SetManager:
     """
@@ -18,7 +18,7 @@ class SetManager:
         Returns an iterator that iterates over the objects in sets.
         :return: iterator: An iterator over the objects in the sets.
         """
-        return iter(self.printer_manager)
+        return self
 
     def __len__(self):
         """
@@ -48,3 +48,4 @@ class SetManager:
         :raises: StopIteration: Always raised to indicate the end of iteration.
         """
         raise StopIteration()
+    

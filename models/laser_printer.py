@@ -45,6 +45,6 @@ class LaserPrinter(Printer):
         Calculate and return the remaining number of pages that can be printed.
 
         Returns:
-        int: The remaining number of pages that can be printed.
+               int: The remaining number of pages that can be printed.
         """
         return self.toner_pages_count - self.printed_pages_count

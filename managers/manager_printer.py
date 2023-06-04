@@ -98,9 +98,12 @@ class PrinterManager:
         condition (function): A condition function that takes a printer as input and returns a boolean value.
 
         Returns:
-             dict: A dictionary with 'all' and 'any' keys indicating if the condition is satisfied for all or any printer,
+        dict: A dictionary with 'all' and 'any' keys indicating if the condition is satisfied for all or any printer,
         respectively.
         """
         all_condition = all(condition(printer) for printer in self.printers)
         any_condition = any(condition(printer) for printer in self.printers)
         return {"all": all_condition, "any": any_condition}
+
+    import logging
+

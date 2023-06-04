@@ -55,7 +55,6 @@ class Printer(ABC):
             print(f"Printing {pages} pages...")
         else:
             print("Not enough paper in the tray!")
-
     def load_paper(self, count):
         """
         Load the specified number of paper sheets into the printer.
@@ -86,6 +85,6 @@ class Printer(ABC):
         value_pr_type (type): The type of value to match.
 
         Returns:
-        dict: A dictionary of attributes and their values that have the specified value type.
+              dict: A dictionary of attributes and their values that have the specified value type.
         """
         return {attr: value for attr, value in self.__dict__.items() if isinstance(value, value_pr_type)}
